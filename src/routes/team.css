@@ -1,0 +1,48 @@
+.team{
+  display: block;
+  color: white;
+}
+
+.header{
+  padding: 10%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 60px;
+  color: #0284c7;
+  font-weight: 200;
+}
+
+.teamMates {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.dakota { 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  line-height: 30px;
+  padding: 10px; 
+}
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 300px;
+  width: 270px;
+}
+.github{
+  height:30px;
+  width: 30px;
+}
+
+.links{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  
+}
