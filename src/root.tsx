@@ -32,8 +32,8 @@ export default function Root() {
       <Body class="bg-gray-900 text-gray-100 antialiased font-roboto">
         <Suspense>
           <ErrorBoundary>
-            <nav class="bg-gray-800">
-              <ul class="container flex items-center p-3 text-gray-200">
+            <nav class="bg-gray-800 flex flex-row">
+              <ul class="flex items-center p-3 text-gray-200">
               <img class="h-12 w-12" src="/SquidLogo.png" />
                 <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
                   <A href="/">Home</A>
@@ -44,7 +44,16 @@ export default function Root() {
                 <li class={`border-b-2 ${active("/team")} mx-1.5 sm:mx-6`}>
                   <A href="/team">Team</A>
                 </li>
-              </ul>
+                </ul>
+                <div class="flex flex-grow justify-end">
+                <button class="flex flex-row items-center ">
+                  <img class="h-8 w-8" src="/Medium.png"></img>
+                  <img class="h-8 w-8 mx-3" src="/GithubWhite.png"/>
+                  <div class={` border-b-2 text-gray-200 ${active("https://github.com/")} mx-1.5 sm:mx-6`}>
+                  <A href="https://github.com/">Admin Login</A> 
+                  </div>
+                </button>
+                </div>
             </nav>
             <Routes>
               <FileRoutes />
