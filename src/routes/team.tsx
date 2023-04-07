@@ -1,5 +1,4 @@
 import { A } from "solid-start";
-import Counter from "~/components/Counter";
 import "./team.css";
 
 export default function Team() {
