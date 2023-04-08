@@ -1,5 +1,4 @@
 import { A } from "solid-start";
-import Counter from "~/components/Counter";
 import "./team.css";
 
 export default function Team() {
@@ -14,7 +13,7 @@ export default function Team() {
           <img class="img" src="../../dakota.jpg" alt="Squid" />
           <div class="links">
             Dakota 
-          <a href="https://www.github.com" target="_blank"><img class="github" src="../../github.png" alt="" /></a> 
+          <a href="https://www.github.com" target="_blank"><img class="github" src="../../github.png" alt="" onClick={() => console.log("GOING TO DAKOTA's GITHUB TEEHEEEHEE")} /></a> 
           <a href="https://www.linkedin.com" target="_blank"><img class="github" src="../../linked.png" alt="" /> </a>
           </div>
         </div>

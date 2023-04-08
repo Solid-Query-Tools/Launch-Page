@@ -1,6 +1,12 @@
 import { A } from "solid-start";
+import { PrismaClient } from '@prisma/client'
+
+
 
 export default function Home() {
+
+
+
   return (
     <>
       <main class="relative flex mb-12 overflow-hidden h-64">
