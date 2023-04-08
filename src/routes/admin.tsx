@@ -1,7 +1,10 @@
 import { A } from "solid-start";
 
 export default function Admin() {
-    
+   
+  //run a function to check if the currentUser === an Admin (look in the database and check to see if User.admin === true)
+  //Navigate Hook has the power to redirect to a different page.
+  //Within the navigate, have a conditional that will decide to show the admin page or redirect to the home page 
 
 
   return (

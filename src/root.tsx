@@ -38,6 +38,9 @@ export default function Root() {
   const [searchParams] = useSearchParams();
   const code = searchParams.code;
 
+
+  //if email sent to the database is in the .env file, set admin on that property to true
+
   const useSession = () => {
     return createServerData$(
       async (_, { request }) => {
@@ -68,7 +71,7 @@ export default function Root() {
   const admin4: string = import.meta.env.VITE_Admin4;
 
   createEffect(() => {
-      console.log("This is the user email:", username());
+      console.log("This is the user:", user());
       if (
         username() === admin1 ||
         username() === admin2 ||
@@ -81,6 +84,7 @@ export default function Root() {
 
     //Send username to database; 
     //Create isUser signal in Admin to check if the user is the right user. 
+
 
 
   return (
