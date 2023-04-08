@@ -43,6 +43,9 @@ export default function Team() {
               <li><a href=" https://www.linkedin.com/in/lloyd-bistany" target="_blank"><img class="icons" src="../../linked.png" alt="" /> </a></li>
             </ul>
           </div>
+
+            <div class="contentBx">
+              <h3>Lloyd</h3>
         </div>
         
         <div class="card">
