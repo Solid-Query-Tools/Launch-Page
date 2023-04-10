@@ -30,7 +30,7 @@ export default function Header() {
                     <li class={`border-b-2 ${active("/admin")} mx-1.5 sm:mx-6`} >
                         <a href="/admin">Admin</a>
                     </li>
-                    <li class="border-b-2 mx-1.5 sm:mx-6">
+                    <li class={`border-b-2 ${active("/feedback")} mx-1.5 sm:mx-6`}>
                         <a href="/feedback">Feedback</a>
                     </li>
                 </ul>

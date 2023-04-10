@@ -24,12 +24,13 @@ export default function Feedback() {
   return (
     <>
     <Header />
-    <div class='flex flex-col items-center'>
-    <div class='bg-green-500 w-1/5 flex items-center justify-around'>
+    <div class='flex flex-col items-center h-content'>
+    <div class='bg-green-500 w-1/4 h-10 flex items-center justify-around'>
       <button onClick={() => setView('feature')}>Feature Requests</button>
       <button onClick={() => setView('bugs')}>Bug Reports</button>
+      <button onClick={() => setView('submit')}>Submit</button>
     </div>
-    <section class='bg-black w-4/5 text-white'>
+    <section class='bg-black w-4/5 h-200 text-white'>
     <For each={query.data}>
         {pokemon => { 
           if (pokemon.name[0] == 'c') return <div>{pokemon.name}</div>
