@@ -12,13 +12,13 @@ export default function Feedback() {
   })
 
   //need to filter before map as well
-  const content = query.map((q) => <Message  author={q.author} text={q.text} date={q.createdAt}/>)
+  const content = query.filter((q) => q.type == view()).map((q) => <Message  author={q.author} text={q.text} date={q.createdAt}/>)
 
   return (
     <>
     <div>
-      <button>Feature Requests</button>
-      <button>Bug Reports</button>
+      <button onClick={() => setView('feature')}>Feature Requests</button>
+      <button onClick={() => setView('bugs')}>Bug Reports</button>
     </div>
     <section>
       {content}
