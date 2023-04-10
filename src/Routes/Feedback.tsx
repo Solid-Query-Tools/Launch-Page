@@ -11,9 +11,11 @@ export default function Feedback() {
   //use solid query to populate cache with data on feedback and bugs from the database
   const query = createQuery(() => ['feedback'],
    async () => {
-    let data = await fetch('https://pokeapi.co/api/v2/pokemon/')
+    let data = await fetch('/getfeedback')
+    console.log(data)
     data = await data.json()
-    return data.results;
+    console.log(data)
+    return data;
   })
 
 
@@ -28,14 +30,25 @@ export default function Feedback() {
     <div class='bg-green-500 w-1/4 h-10 flex items-center justify-around'>
       <button onClick={() => setView('feature')}>Feature Requests</button>
       <button onClick={() => setView('bugs')}>Bug Reports</button>
-      <button onClick={() => setView('submit')}>Submit</button>
+      <button onClick={() => {
+        fetch('/sendfeedback', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({testimonial: "hi"}),
+        });
+        setView('submit')
+        }}>Submit</button>
     </div>
     <section class='bg-black w-4/5 h-200 text-white'>
-    <For each={query.data}>
-        {pokemon => { 
-          if (pokemon.name[0] == 'c') return <div>{pokemon.name}</div>
+      <Message />
+    {/* <For each={query.data}>
+        {feedback => { 
+          console.log(feedback)
+          return <div>{feedback.createdBy}</div>
           }}
-    </ For>
+    </ For> */}
     </section>
     </div>
     </>
