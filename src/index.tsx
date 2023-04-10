@@ -1,9 +1,10 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
 // import "tailwindcss/tailwind.css"; 
-
+import { Router, Route, Routes } from "@solidjs/router"
 import './index.css';
 import App from './App';
+import Team from './team';
 
 const root = document.getElementById('root');
 
@@ -13,4 +14,9 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <App />, root!);
+render(() => <Router>
+  <Routes>
+    <Route path="/" component={App} />
+    <Route path="/team" component={Team} />
+  </Routes>
+</Router>, root!);
