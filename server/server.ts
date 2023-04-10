@@ -16,6 +16,13 @@ async function launchServer() {
 
   app.use(vite.middlewares);
 
+  // test route
+  app.post('/testimonial', (req, res) => {
+    console.log('post request received');
+    res.status(200).send();
+  })
+
+  // this sends static files and must be below any routes that will send a response other than the static files
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
 
@@ -38,6 +45,7 @@ async function launchServer() {
       return next(error);
     }
   })
+
 
   app.listen(8080, () => {
     console.log('The server is listening at port 8080.');
