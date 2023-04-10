@@ -11,4 +11,20 @@ mongoose.connect(MONGO_URI)
 
 // TO DO: 
 // initialize models and schemas
+interface IFeedback {
+  type: string,
+  message: string,
+  createdBy: string,
+  createdAt: Date,
+  adminResponse: string
+}
+
+const feedbackSchema = new Schema<IFeedback>({
+  type: {type: String, required: true},
+  message: {type: String, required: true},
+  createdBy: {type: String, required: true}, //Could be a user instance instead
+  createdAt: {type: Date, required: true}, 
+  adminResponse: {type: String, required: false}, 
+})
+
 // export models
