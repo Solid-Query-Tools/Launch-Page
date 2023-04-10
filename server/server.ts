@@ -16,8 +16,9 @@ async function launchServer() {
 
   app.use(vite.middlewares);
 
-  app.post('/submitfeedback', async (req, res, next) => {
-    
+  app.post('/testimonial', (req, res) => {
+    console.log('post request received');
+    res.status(200).send();
   })
 
   app.use('/', async (req, res, next) => {
@@ -42,6 +43,7 @@ async function launchServer() {
       return next(error);
     }
   })
+
 
   app.listen(8080, () => {
     console.log('The server is listening at port 8080.');

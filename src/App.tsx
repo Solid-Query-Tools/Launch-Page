@@ -5,6 +5,7 @@ import BackgroundBubbles from "./assets/BackgroundBubbles.mp4"
 import SolidLogo from "./assets/SolidLogo.png"
 import Header from './header';
 import { A } from '@solidjs/router';
+import Testimonial from './testimonial';
 
 const App: Component = () => {
   return (
@@ -50,6 +51,7 @@ const App: Component = () => {
             Team Page
           </A>
         </p>
+        <Testimonial />
       </div>
     </>
   );
