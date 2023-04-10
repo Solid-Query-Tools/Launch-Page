@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+import { Schema, connect, model } from 'mongoose';
 const dotenv = require('dotenv');
 
-const Schema = mongoose.Schema;
+dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI)
+connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB.'))
   .catch((err) => console.log(err));
 
@@ -16,6 +16,7 @@ interface IFeedback {
   message: string,
   createdBy: string,
   createdAt: Date,
+  approved: boolean,
   adminResponse: string
 }
 
@@ -24,7 +25,9 @@ const feedbackSchema = new Schema<IFeedback>({
   message: {type: String, required: true},
   createdBy: {type: String, required: true}, //Could be a user instance instead
   createdAt: {type: Date, required: true}, 
+  approved: {type: Boolean, default: false, required: true},
   adminResponse: {type: String, required: false}, 
 })
 
 // export models
+export const Feedback = model<IFeedback>('feedback', feedbackSchema);

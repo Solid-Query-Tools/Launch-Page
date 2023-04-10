@@ -16,6 +16,10 @@ async function launchServer() {
 
   app.use(vite.middlewares);
 
+  app.post('/submitfeedback', async (req, res, next) => {
+    
+  })
+
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
 
