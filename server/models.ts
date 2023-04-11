@@ -35,8 +35,22 @@ const userSchema = new Schema({
   admin: {type: Boolean, requred: true, default: false}
 });
 
+const sessionSchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    expires: 600,
+    default: Date.now,
+  }
+});
+
 // export models
 const Feedback = model('feedback', feedbackSchema);
 const User = model('user', userSchema);
+const Session = model('session', sessionSchema);
 
-module.exports = { Feedback, User };
+module.exports = { Feedback, User, Session };

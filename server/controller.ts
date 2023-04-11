@@ -1,6 +1,7 @@
 models = require('./models.ts');
 
 module.exports = {
+
   getFeedback: async (req, res, next) => {
     console.log('hit')
     try {
@@ -12,6 +13,12 @@ module.exports = {
 
     catch {
       console.log('issue')
+    }
+  },
+
+  createSession: async (req, res, next) => {
+    try {
+      
     }
   }
 }
