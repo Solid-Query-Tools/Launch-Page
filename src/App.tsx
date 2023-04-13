@@ -1,6 +1,4 @@
 import type { Component } from 'solid-js';
-import YarnLogo from "./assets/YarnLogo.png"
-import SquidLogo from "./assets/SquidLogo.png"
 import BackgroundBubbles from "./assets/BackgroundBubbles.mp4"
 import SolidLogo from "./assets/SolidLogo.png"
 import Header from './header';
