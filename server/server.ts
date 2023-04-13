@@ -4,6 +4,8 @@ const { fileURLToPath } = require('url');
 const express = require('express');
 const { createServer } = require('vite');
 const { create } = require('domain');
+let models = require('./models.ts');
+const controller = require('./controller.ts');
 
 
 async function launchServer() {
@@ -16,32 +18,43 @@ async function launchServer() {
 
   app.use(vite.middlewares);
 
-  // test route
-  app.post('/testimonial', (req, res) => {
-    console.log('post request received');
-    res.status(200).send();
+  app.post('/sendfeedback', async (req, res, next) => {
+    const document = new models.Feedback({
+      type: 'bug',
+      message: 'testing',
+      createdBy: 'Truett',
+      createdAt: Date.now(),
+      approved: true,
+      adminResponse: 'works!'
+    });
+    await document.save();
+    res.status(200).send(document);
   })
 
-  // this sends static files and must be below any routes that will send a response other than the static files
+  app.get('/getfeedback', controller.getFeedback, async (req, res, next) => {
+    res.status(200).send(res.locals.feedback)
+  })
+
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
       // read index.html
-      let static = fs.readFileSync(
+      let staticFiles = fs.readFileSync(
         path.resolve(__dirname, '../index.html'),
         'utf-8',
       )
 
       // apply Vite HTML transforms
-      static = await vite.transformIndexHtml(url, static);
+      staticFiles = await vite.transformIndexHtml(url, staticFiles);
 
       // send back rendered HTML
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(static);
+      res.status(200).set({ 'Content-Type': 'text/html' }).send(staticFiles);
       
     } catch(error) {
       console.log(error)
-      vite.ssrFixStacktrace(error);
+      // vite.ssrFixStacktrace(error);
+      res.status(500).send();
       return next(error);
     }
   })
