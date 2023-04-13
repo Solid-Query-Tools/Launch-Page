@@ -26,11 +26,11 @@ export default function Feedback() {
   return (
     <>
     <Header />
-    <div class='flex flex-col items-center h-content'>
-    <div class='bg-green-500 w-1/4 h-10 flex items-center justify-around'>
-      <button onClick={() => setView('feature')}>Feature Requests</button>
-      <button onClick={() => setView('bugs')}>Bug Reports</button>
-      <button onClick={() => {
+    <div class='flex flex-col items-center'>
+    <div class='bg-green-500 w-1/4 h-10 flex items-center justify-around mt-10 min-w-fit p-3'>
+      <button class='mx-2' onClick={() => setView('feature')}>Feature Requests</button>
+      <button class='mx-2' onClick={() => setView('bugs')}>Bug Reports</button>
+      <button class='mx-2' onClick={() => {
         fetch('/sendfeedback', {
           method: 'POST',
           headers: {
@@ -41,14 +41,13 @@ export default function Feedback() {
         setView('submit')
         }}>Submit</button>
     </div>
-    <section class='bg-black w-4/5 h-200 text-white'>
-      <Message />
-    {/* <For each={query.data}>
-        {feedback => { 
+    <section class='bg-black w-4/5 text-white mt-10 h-[40em]'>
+    <For each={query.data}>
+        {feedback => {
           console.log(feedback)
-          return <div>{feedback.createdBy}</div>
-          }}
-    </ For> */}
+           return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt}/>
+        }}
+    </ For>
     </section>
     </div>
     </>
