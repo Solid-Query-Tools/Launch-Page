@@ -25,7 +25,7 @@ async function launchServer() {
   app.use(cookieParser());
 
   // route feedback requests
-  app.use('/feedback', feedbackRouter);
+  app.use('/fb', feedbackRouter);
 
   // route oauth requests
   app.use('/oauth', oauthRouter);
