@@ -25,6 +25,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.3",
+    "solid-icons": "^1.0.4",
     "solid-js": "^1.6.10"
   }
 }
