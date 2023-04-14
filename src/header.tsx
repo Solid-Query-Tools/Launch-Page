@@ -3,9 +3,15 @@ import YarnLogo from './assets/YarnLogo.png';
 import MediumLogo from './assets/MediumLogo.png';
 import GithubLogo from './assets/GithubLogo.png'
 import NPMLogo from './assets/NPMLogo.png'
-import { useLocation } from "@solidjs/router"
+import { useLocation, useNavigate } from "@solidjs/router"
+
+const client_id = '0d4f2774e4002245e60a';
 
 export default function Header() {
+
+  const oauth = () => {
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`
+  }
 
     const location = useLocation();
     const active = (path: string) =>
@@ -41,7 +47,7 @@ export default function Header() {
                         <img class="h-8 w-8 mr-4" src={MediumLogo}></img>
                         <img class="h-8 w-8 " src={GithubLogo} />
                         <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6`} >
-                            <button>Admin Login</button>
+                            <button onClick={() => oauth()}>Admin Login</button>
                         </div>
                     </div>
                 </div>
