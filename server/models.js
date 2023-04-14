@@ -30,6 +30,11 @@ const sessionSchema = new Schema({
     ref: "User",
     required: true,
   },
+  username: {
+    type: String,
+    ref: "Username",
+    required: true
+  },
   createdAt: {
     type: Date,
     expires: 600,

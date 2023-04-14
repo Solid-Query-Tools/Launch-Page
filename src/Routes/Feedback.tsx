@@ -19,9 +19,8 @@ export default function Feedback() {
     async () => {
       let data = await fetch('/fb')
       data = await data.json()
-      return data.reverse();
+      return data;
     })
-
 
 
   //need to filter before map as well
@@ -50,7 +49,7 @@ export default function Feedback() {
               <div class="flex flex-col items-center overflow-y-scroll">
                 <For each={query.data}>
                   {feedback => {
-                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} />
+                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} queryCall={query}/>
                   }}
                 </ For>
               </div>

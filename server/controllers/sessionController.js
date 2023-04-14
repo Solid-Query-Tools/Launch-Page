@@ -15,6 +15,7 @@ const sessionController = {
       console.log('id: ', _id);
       await Session.create({
         userId: _id,
+        username: res.locals.user.username,
       })
       res.cookie('session', _id);
       console.log("A session has been created for:", res.locals.user.username)
