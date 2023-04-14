@@ -41,7 +41,7 @@ export default function Form(props) {
         <div class="flex flex-col items-center mt-10">
           <label for="type" class="text-sm text-blue-500 font-bold">Feedback Type</ label>
           <select id="type" name="type" onChange={handleSelectChange} class="text-center w-[12em] bg-gray-800 text-white text-xs rounded-xl py-1 px-1 mt-2">
-            <option disabled selected value class="hidden">select an option</option>
+            <option disabled selected class="hidden">select an option</option>
             <option value="Feature Request">Feature Request</option>
             <option value="Bug Report">Bug Report</option>
           </select>

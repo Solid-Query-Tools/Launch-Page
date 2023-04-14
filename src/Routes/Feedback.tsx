@@ -19,7 +19,7 @@ export default function Feedback() {
     async () => {
       let data = await fetch('/fb')
       data = await data.json()
-      return data;
+      return data.reverse();
     })
 
 

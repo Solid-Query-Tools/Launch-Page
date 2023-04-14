@@ -11,14 +11,14 @@ export default function Team() {
   return (
     <>
       <Header />
-      <main class="main">
+      <main class="main flex flex-col justify-center items-center">
         <div class="header">
           <p>MEET THE TEAM!</p>
         </div>
-        <div class="container">
-          <div class="card">
+        <div class="container flex flex-col lg:flex-row lg:items-center">
+          <div class="card lg:w-1/4">
             <div class="content">
-              <div class="imgBx">
+              <div class="imgBx w-72">
                 <img class="img" src={Dakota} alt="Squid" />
               </div>
               <div class="contentBx">
@@ -30,9 +30,9 @@ export default function Team() {
               </ul>
             </div>
           </div>
-          <div class="card">
+          <div class="card lg:w-1/4">
             <div class="content">
-              <div class="imgBx">
+              <div class="imgBx w-72">
                 <img class="img" src={Lloyd} alt="Squid" />
               </div>
               <div class="contentBx">
@@ -44,9 +44,9 @@ export default function Team() {
               </ul>
             </div>
           </div>
-          <div class="card">
+          <div class="card lg:w-1/4">
             <div class="content">
-              <div class="imgBx">
+              <div class="imgBx w-72">
                 <img class="img" src={Peter} alt="Squid" />
               </div>
               <div class="contentBx">
@@ -58,9 +58,9 @@ export default function Team() {
               </ul>
             </div>
           </div>
-          <div class="card">
+          <div class="card lg:w-1/4">
             <div class="content">
-              <div class="imgBx">
+              <div class="imgBx w-72">
                 <img class="img" src={Truett} alt="Squid" />
               </div>
               <div class="contentBx">
