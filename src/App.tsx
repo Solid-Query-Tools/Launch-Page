@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, Switch, Match, Show } from 'solid-js';
 import YarnLogo from "./assets/YarnLogo.png"
 import SquidLogo from "./assets/SquidLogo.png"
 import { IoCopy } from 'solid-icons/io'
@@ -56,17 +56,17 @@ const App: Component = () => {
         A lightweight NPM package that allows you to debug SolidJS applications using Tanstack's Solid Query.
         </p>
         <div class="flex justify-around mt-10 h-[20em]">
-        <div class="bg-gray-800 w-1/3 rounded-xl">
-        <h1 class="max-6-xs text-6xl text-sky-700 font-thin p-5">
-          Features
-        </h1>
-        <ul class="list-outside list-disc text-sm">
-          <li>analyze information about query status, including whether a query is fresh, stale, paused, or inactive</li>
-          <li>sort queries by query keys and latest updated</li>
-          <li>refetch or remove queries</li>
-          <li>review the data received from each query as well as metadata about query update times and status</li>
-        </ul>
-        </div>
+            <div class="bg-gray-800 w-1/3 rounded-xl">
+              <h1 class="max-6-xs text-6xl text-sky-700 font-thin p-5">
+                Features
+              </h1>
+              <ul class="list-outside list-disc text-sm">
+                <li>analyze information about query status, including whether a query is fresh, stale, paused, or inactive</li>
+                <li>sort queries by query keys and latest updated</li>
+                <li>refetch or remove queries</li>
+                <li>review the data received from each query as well as metadata about query update times and status</li>
+              </ul>
+            </div>
         <div class="w-1/3 min-w-fit bg-gray-800 rounded-xl">
           <div class="flex justify-between">
           <h1 onClick={() => setView('install')} class="hover:cursor-pointer max-6-xs text-6xl text-sky-700 font-thin p-5">Install</h1>
@@ -114,7 +114,6 @@ const App: Component = () => {
             Team Page
           </A>
         </p>
-        <Testimonial />
       </div>
     </>
   );

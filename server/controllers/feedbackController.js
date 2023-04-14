@@ -22,6 +22,8 @@ const feedbackController = {
   },
 
   getFeedback: async (req, res, next) => {
+    //if user's admin is true:
+    
     // find all approved feedback and save to res.locals
     Feedback.find({ approved: true })
       .then(results => {

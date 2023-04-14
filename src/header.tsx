@@ -3,7 +3,7 @@ import YarnLogo from './assets/YarnLogo.png';
 import MediumLogo from './assets/MediumLogo.png';
 import GithubLogo from './assets/GithubLogo.png'
 import NPMLogo from './assets/NPMLogo.png'
-import { useLocation, useNavigate } from "@solidjs/router"
+import { useLocation } from "@solidjs/router"
 
 const client_id = '0d4f2774e4002245e60a';
 
@@ -27,14 +27,8 @@ export default function Header() {
                     <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`} >
                         <a href="/">Home</a>
                     </li>
-                    <li class={`border-b-2 ${active("/about")} mx-1.5 sm:mx-6`} >
-                        <a href="/about">About</a>
-                    </li>
                     <li class={`border-b-2 ${active("/team")} mx-1.5 sm:mx-6`} >
                         <a href="/team">Team</a>
-                    </li>
-                    <li class={`border-b-2 ${active("/admin")} mx-1.5 sm:mx-6`} >
-                        <a href="/admin">Admin</a>
                     </li>
                     <li class={`border-b-2 ${active("/feedback")} mx-1.5 sm:mx-6`}>
                         <a href="/feedback">Feedback</a>
