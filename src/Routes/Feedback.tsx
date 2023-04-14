@@ -23,7 +23,6 @@ export default function Feedback() {
     })
 
 
-
   //need to filter before map as well
   // const content = query.data.filter((q) => q.type == view()).map((q) => <Message  author={q.author} text={q.text} date={q.createdAt}/>)
 
@@ -50,7 +49,7 @@ export default function Feedback() {
               <div class="flex flex-col items-center overflow-y-scroll">
                 <For each={query.data}>
                   {feedback => {
-                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} />
+                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} queryCall={query}/>
                   }}
                 </ For>
               </div>
