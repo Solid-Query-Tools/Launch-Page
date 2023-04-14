@@ -4,8 +4,10 @@ const { fileURLToPath } = require('url');
 const express = require('express');
 const { createServer } = require('vite');
 const { create } = require('domain');
-let models = require('./models.ts');
-const controller = require('./controller.ts');
+const models = require('./models');
+const cookieParser = require('cookie-parser');
+const feedbackRouter = require('./routes/feedbackRouter');
+const oauthRouter = require('./routes/oauthRouter');
 
 
 async function launchServer() {
@@ -18,22 +20,15 @@ async function launchServer() {
 
   app.use(vite.middlewares);
 
-  app.post('/sendfeedback', async (req, res, next) => {
-    const document = new models.Feedback({
-      type: 'bug',
-      message: 'testing',
-      createdBy: 'Truett',
-      createdAt: Date.now(),
-      approved: true,
-      adminResponse: 'works!'
-    });
-    await document.save();
-    res.status(200).send(document);
-  })
+  //parse request body and cookies:
+  app.use(express.json());
+  app.use(cookieParser());
 
-  app.get('/getfeedback', controller.getFeedback, async (req, res, next) => {
-    res.status(200).send(res.locals.feedback)
-  })
+  // route feedback requests
+  app.use('/feedback', feedbackRouter);
+
+  // route oauth requests
+  app.use('/oauth', oauthRouter);
 
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
@@ -50,8 +45,8 @@ async function launchServer() {
 
       // send back rendered HTML
       res.status(200).set({ 'Content-Type': 'text/html' }).send(staticFiles);
-      
-    } catch(error) {
+
+    } catch (error) {
       console.log(error)
       // vite.ssrFixStacktrace(error);
       res.status(500).send();
@@ -59,6 +54,15 @@ async function launchServer() {
     }
   })
 
+app.use((err, req, res, next) => {
+  console.log(`Error: ${err}`);
+  const standardError = {
+    log: 'There is an unknown middleware error.',
+    status: 500,
+    message: {error: err}
+  };
+  return Object.assign(standardError, err);
+});
 
   app.listen(8080, () => {
     console.log('The server is listening at port 8080.');
