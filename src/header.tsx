@@ -21,7 +21,7 @@ export default function Header() {
 
     return (
         <>
-            <nav class="bg-gray-800 flex flex-row">
+            <nav class="bg-gray-800 flex flex-row sticky top-0 z-40">
                 <ul class="flex items-center p-3 text-gray-200">
                     <img class="h-12 w-12" src={SquidLogo} />
                     <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`} >
