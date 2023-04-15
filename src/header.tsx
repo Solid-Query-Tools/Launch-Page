@@ -79,8 +79,8 @@ export default function Header() {
             <img class="h-8 w-8 invisible sm:visible" src={GithubLogo} />
             <Switch>
                 <Match when={isLoggedIn() === false}>
-                    <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6`} >
-                        <button onClick={() => oauth()}>Admin Login</button>
+                    <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6 invisible sm:visible`} >
+                        <button onClick={() => oauth()}>Github Login</button>
                     </div>
                 </Match>
                 <Match when={isLoggedIn() === true}>
