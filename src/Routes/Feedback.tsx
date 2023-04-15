@@ -33,13 +33,6 @@ export default function Feedback() {
         <div class='bg-gray-800 w-1/4 h-10 flex items-center justify-around mt-10 min-w-fit p-3 rounded-xl'>
           <button class={`mx-2 border-b-2 ${active('feedback')}`} onClick={() => setView('feedback')}>View Feedback</button>
           <button class={`mx-2 border-b-2 ${active('submit')}`} onClick={() => {
-            // fetch('/sendfeedback', {
-            //   method: 'POST',
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //   },
-            //   body: JSON.stringify({testimonial: "hi"}),
-            // });
             setView('submit')
           }}>Submit Feedback</button>
         </div>
@@ -49,14 +42,14 @@ export default function Feedback() {
               <div class="flex flex-col items-center overflow-y-scroll">
                 <For each={query.data}>
                   {feedback => {
-                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} queryCall={query}/>
+                    return <Message id={feedback._id} createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} queryCall={query}/>
                   }}
                 </ For>
               </div>
-            </Match>
+            </Match >
             <Match when={view() === 'submit'}>
               <div class="flex flex-col items-center">
-                <Form />
+                <Form queryCall={query}/>
               </div>
             </Match>
           </ Switch>
