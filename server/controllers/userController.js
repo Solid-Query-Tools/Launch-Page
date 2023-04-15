@@ -20,8 +20,8 @@ const userController = {
           message: { err },
         });
       })
-  } 
-
+  },
+  
 }
 
 
