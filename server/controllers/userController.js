@@ -33,8 +33,8 @@ const userController = {
           message: { err },
         });
       })
-  } 
-
+  },
+  
 }
 
 

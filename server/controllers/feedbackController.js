@@ -1,4 +1,4 @@
-const { Feedback } = require('../models');
+const { Feedback, User } = require('../models');
 
 const feedbackController = {
 
@@ -23,19 +23,39 @@ const feedbackController = {
   },
 
   getFeedback: async (req, res, next) => {
-    // find all approved feedback and save to res.locals
-    try {
-      console.log("Getting Approved Feedback");
-      Feedback.find({ approved: true })
+    // if user is not logged in, send only approved feedback 
+    // if user is logged in, use cookie to find the user
+    // if user's admin is false, retrieve only approved feedback
+    // if user's admin is true, retrieve all feedback
+    try {  
+      if (Object.keys(req.cookies).includes("session") === false)  {
+        console.log("User not logged in, sending APPROVED feedback!")
+        Feedback.find({ approved: true })
+              .then(results => {
+                res.locals.feedback = results;
+                return next();
+              })
+      }
+      await User.findOne({ _id: req.cookies.session })
         .then(results => {
-          res.locals.approvedFeedback = results;
+          let adminStatus = results.admin;
+          if (adminStatus === true) {
+            console.log("Sending ALL feedback")
+            Feedback.find({})
+              .then(results => {
+                res.locals.feedback = results;
+                return next();
+              })
+          }
+          else {
+            console.log("Sending only APPROVED feedback")
+            Feedback.find({ approved: true })
+              .then(results => {
+                res.locals.feedback = results;
+                return next();
+              })
+          }
         })
-        .then(Feedback.find({ approved: false })
-          .then(results => {
-            res.locals.pendingFeedback = results;
-            return next();
-          })
-        )
     }
     catch (error) {
       if (error) return next({
