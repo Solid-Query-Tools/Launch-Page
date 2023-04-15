@@ -1,8 +1,9 @@
 const express = require('express');
 const feedbackRouter = express.Router();
 const { getFeedback, postFeedback, updateFeedback } = require('../controllers/feedbackController');
+const { verifySession } = require('../controllers/sessionController')
 
-feedbackRouter.post('/', postFeedback, (req, res) => {
+feedbackRouter.post('/', verifySession, postFeedback, (req, res) => {
   res.status(200).send('Your feedback has been submitted. Once approved, it will appear in the feed.');
 })
 
