@@ -1,5 +1,5 @@
 //need to know if user is admin here 
-import { createEffect, createSignal, useContext } from "solid-js"
+import { createEffect, createSignal, useContext, Show } from "solid-js"
 import { UserContext } from '../UserContext';
 
 export default function Form(props) {
@@ -34,7 +34,7 @@ export default function Form(props) {
       body: JSON.stringify({
         type: selectOption(),
         message: formData(),
-        createdBy: "Lloyd"
+        createdBy: "Lloyd" //replace with user
       }),
       headers: {
         'Content-Type': 'application/json'

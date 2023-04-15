@@ -63,6 +63,27 @@ const sessionController = {
         message: {error}
       });
     };
+  },
+
+  deleteSession: async (req, res, next) =>  {
+    console.log("Entering Middleware: Deleting Session!")
+   //NEED TO GET COOKIES AND USE THAT TO DELETE SESSION
+    try {
+      Session.findOneAndDelete({ userId: req.cookies.session })
+        .then(results => {
+          res.locals.deletedSession = results;
+          return next();
+        })
+    }
+    catch (err) {
+      console.log("Error in deleteSession")
+      return next({
+        log: "Error in deleteSession",
+        status: 500,
+        message: { err },
+      })
+    }
+
   }
 }
 
