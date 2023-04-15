@@ -21,7 +21,6 @@ oauthRouter.get(
   sessionController.createSession,
   (req, res) => {
     res.body = res.locals.user.username;
-    console.log("Sending username back to front!", res.body)
     return res.status(200).redirect('/');
   }
 )

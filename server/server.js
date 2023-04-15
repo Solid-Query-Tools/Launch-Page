@@ -52,8 +52,6 @@ async function launchServer() {
       res.status(200).set({ 'Content-Type': 'text/html' }).send(staticFiles);
 
     } catch (error) {
-      console.log(error)
-      // vite.ssrFixStacktrace(error);
       res.status(500).send();
       return next(error);
     }
@@ -61,11 +59,11 @@ async function launchServer() {
 
   // global error handler
   app.use((err, req, res, next) => {
-    console.log(`Error in global error handler: ${err}`);
+    console.log(`Error in global error handler: ${JSON.stringify(err)}`);
     const standardError = {
       log: 'There is an unknown middleware error.',
       status: 500,
-      message: {error: err}
+      message: {error: JSON.stringify(err)}
     };
     return Object.assign(standardError, err);
   });

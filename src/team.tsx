@@ -6,6 +6,7 @@ import Lloyd from "./assets/lloyd.png"
 import Linked from "./assets/linked.png"
 import Github from "./assets/GithubWhite.png"
 import Header from './header';
+
 // import Footer from "./footer";
 export default function Team() {
   return (

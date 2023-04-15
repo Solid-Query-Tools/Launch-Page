@@ -8,7 +8,6 @@ feedbackRouter.post('/', verifySession, postFeedback, (req, res) => {
 })
 
 feedbackRouter.put('/', updateFeedback, (req, res) => {
-  console.log("Comment has sucessfully been updated in Feedback Object!")
   res.status(200).send(res.locals.updatedObject);
 })
 

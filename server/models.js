@@ -13,7 +13,7 @@ connect(MONGO_URI)
 const feedbackSchema = new Schema({
   type: {type: String, required: true},
   message: {type: String, required: true},
-  createdBy: {type: String, required: true}, //Could be a user instance instead
+  createdBy: {type: String, required: true},
   createdAt: {type: Date, required: true, default: Date.now()}, 
   approved: {type: Boolean, default: false, required: true},
   adminResponse: {type: String, required: false, default: null}, 

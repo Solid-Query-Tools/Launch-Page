@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js'
-import { createQuery, useQueryClient } from '@tanstack/solid-query'
+import { createQuery } from '@tanstack/solid-query'
 import Message from '../Components/Message'
 import Form from '../Components/Form'
 import Header from '../header'

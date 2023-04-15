@@ -4,7 +4,7 @@ import MediumLogo from './assets/MediumLogo.png';
 import GithubLogo from './assets/GithubLogo.png'
 import NPMLogo from './assets/NPMLogo.png'
 import { useLocation } from "@solidjs/router"
-import { createSignal, createEffect, onMount, Switch, Match, useContext } from 'solid-js';
+import { onMount, Switch, Match, useContext } from 'solid-js';
 import { UserContext } from './UserContext';
 import axios from 'axios';
 
@@ -14,45 +14,32 @@ export default function Header() {
 
   const { username, setUsername, isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
-
-  console.log('username in header component: ', username());
-
-
-
-    const getUser = () => {
-        axios.get('/user')
-          .then(response => {
-            // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
-            if (!response.data) return;
-            // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
-            const data = response.data;
-            console.log('/user response in header component: ', data); // log the response data
-            setUsername(data.username);
-            setIsAdmin(data.admin)
-            setIsLoggedIn(true);
-          })
-          .catch(error => {
-            console.log('/user error in header component: ', error);
-          });
-      }
+  const getUser = () => {
+    axios.get('/user')
+      .then(response => {
+        // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
+        if (!response.data) return;
+        // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
+        const data = response.data;
+        setUsername(data.username);
+        setIsAdmin(data.admin)
+        setIsLoggedIn(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   onMount(() => {
     getUser();
   })
 
-  createEffect(() => {
-    console.log("Is the User Logged In:", isLoggedIn());
-  })
-
   function oauth() {
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
-
-    //IF this doesn't work, then we will need to put the get User in a createEffect
   }
 
   //delete "session" cookie
   function deleteCookie() {
-    console.log('in delete cookie function');
     document.cookie = "session" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
 
@@ -60,13 +47,11 @@ export default function Header() {
     //remove session from DB
     axios.delete('/session')
       .then((result) => {
-        console.log('in logout function');
         deleteCookie();
         setIsLoggedIn(false)
-        console.log(isLoggedIn());
       })
       .catch(error => {
-        console.error('logout error: ', error);
+        console.error(error);
       });
   }
 
@@ -91,9 +76,6 @@ export default function Header() {
           <li class={`border-b-2 ${active("/feedback")} mx-1.5 sm:mx-6`}>
             <a href="/feedback">Feedback</a>
           </li>
-          {/* <li class={`border-2 rounded p-2 ml-10 visible text-[10px] absolute right-2 sm:invisible sm:mx-6`}>
-            <button onClick={() => oauth()}>Github Login</button>
-          </li> */}
         </ul>
         <div class="flex flex-grow justify-end">
           <div class="sm:flex sm:flex-row sm:items-center">
