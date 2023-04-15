@@ -4,17 +4,19 @@ import MediumLogo from './assets/MediumLogo.png';
 import GithubLogo from './assets/GithubLogo.png'
 import NPMLogo from './assets/NPMLogo.png'
 import { useLocation } from "@solidjs/router"
-import { createSignal, createEffect, onMount, Switch, Match } from 'solid-js';
+import { createSignal, createEffect, onMount, Switch, Match, useContext } from 'solid-js';
+import { UserContext } from './UserContext';
 import axios from 'axios';
 
 const client_id = '0d4f2774e4002245e60a';
 
 export default function Header() {
 
-    const [username, setUsername] = createSignal('');
-    const [isLoggedIn, setIsLoggedIn] = createSignal(false);
+    const { username, setUsername } = useContext(UserContext);
+    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
     // const [cookie, setCookie] = createSignal('');
 
+    console.log('username in header component: ', username());
 
 
     const getUser = () => {
