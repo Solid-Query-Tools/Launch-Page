@@ -20,13 +20,16 @@ export default function Header() {
     const getUser = () => {
         axios.get('/user')
           .then(response => {
+            // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
+            if (!response.data) return;
+            // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
             const data = response.data;
-            console.log(data); // log the response data
+            console.log('/user response in header component: ', data); // log the response data
             setUsername(data);
             setIsLoggedIn(true);
           })
           .catch(error => {
-            console.log(error);
+            console.log('/user error in header component: ', error);
           });
       }
 

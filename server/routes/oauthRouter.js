@@ -12,6 +12,7 @@ oauthRouter.get('/', (req, res) => {
   );
 });
 
+// manage oauth login and session functionality
 oauthRouter.get(
   '/token?',
   oauthController.exchangeCode,
