@@ -1,6 +1,4 @@
-/* @refresh reload */
 import { render } from 'solid-js/web';
-// import "tailwindcss/tailwind.css"; 
 import { Router, Route, Routes } from "@solidjs/router"
 import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
 import './index.css';

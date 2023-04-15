@@ -1,12 +1,9 @@
 import { Component, createSignal, Switch, Match, Show } from 'solid-js';
-import YarnLogo from "./assets/YarnLogo.png"
-import SquidLogo from "./assets/SquidLogo.png"
 import { IoCopy } from 'solid-icons/io'
 import { FaRegularCircleCheck } from 'solid-icons/fa'
 import BackgroundBubbles from "./assets/BackgroundBubbles.mp4"
 import SolidLogo from "./assets/SolidLogo.png"
 import Header from './header';
-import { A } from '@solidjs/router';
 
 const App: Component = () => {
   const [view, setView] = createSignal('install')
@@ -24,7 +21,7 @@ const App: Component = () => {
       }, 2000);
     }
     catch (err) {
-      console.log('error')
+      console.log(err)
     }
   }
 
