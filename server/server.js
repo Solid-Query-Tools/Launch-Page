@@ -5,7 +5,8 @@ const { createServer } = require('vite');
 const cookieParser = require('cookie-parser');
 const feedbackRouter = require('./routes/feedbackRouter');
 const oauthRouter = require('./routes/oauthRouter');
-const userRouter = require('./routes/userRouter')
+const userRouter = require('./routes/userRouter');
+const sessionRouter = require('./routes/sessionRouter');
 
 
 async function launchServer() {
@@ -30,6 +31,9 @@ async function launchServer() {
 
   // route user requests
   app.use('/user', userRouter);
+
+  // route session requests
+  app.use('/session', sessionRouter);
 
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
