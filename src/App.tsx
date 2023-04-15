@@ -33,7 +33,7 @@ const App: Component = () => {
     <>
       <Header />
       <main class="relative flex mb-12 overflow-hidden h-64">
-        <div class="relative flex flex-row justify-center items-center z-30 p-5 text-6xl justify-center text-sky-200 text-center bg-opacity-50 rounded-xl w-screen">
+        <div class="lg:text-sm relative flex flex-row justify-center items-center z-30 p-5 text-6xl justify-center text-sky-200 text-center bg-opacity-50 rounded-xl w-screen">
           <img class="h-14 w-14" src={SolidLogo}></img>
           olid Query Devtools
         </div>

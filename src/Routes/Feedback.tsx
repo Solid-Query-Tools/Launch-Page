@@ -3,7 +3,7 @@ import { createQuery } from '@tanstack/solid-query'
 import Message from '../Components/Message'
 import Form from '../Components/Form'
 import Header from '../header'
-import { For, Switch } from 'solid-js'
+import { For, Switch, Match } from 'solid-js'
 
 export default function Feedback() {
   //use signal to determine whether to show feature request or bugs
@@ -17,7 +17,8 @@ export default function Feedback() {
   //use solid query to populate cache with data on feedback and bugs from the database
   const query = createQuery(() => ['feedback'],
    async () => {
-    let data = await fetch('/getfeedback')
+    let data = await fetch('/fb')
+    console.log(data)
     data = await data.json()
     return data.reverse();
   })

@@ -7,6 +7,7 @@ feedbackRouter.post('/', postFeedback, (req, res) => {
 })
 
 feedbackRouter.get('/', getFeedback, (req, res) => {
+  console.log(res.locals.approvedFeedback)
   return res.status(200).send(res.locals.approvedFeedback);
 })
 
