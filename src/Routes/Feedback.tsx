@@ -22,10 +22,6 @@ export default function Feedback() {
       return data.reverse();
     })
 
-
-  //need to filter before map as well
-  // const content = query.data.filter((q) => q.type == view()).map((q) => <Message  author={q.author} text={q.text} date={q.createdAt}/>)
-
   return (
     <>
       <Header />

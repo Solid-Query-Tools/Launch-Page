@@ -16,7 +16,7 @@ const feedbackSchema = new Schema({
   createdBy: {type: String, required: true}, //Could be a user instance instead
   createdAt: {type: Date, required: true, default: Date.now()}, 
   approved: {type: Boolean, default: false, required: true},
-  adminResponse: {type: String, required: false}, 
+  adminResponse: {type: String, required: true, default: ''}, 
 });
 
 const userSchema = new Schema({
@@ -37,7 +37,7 @@ const sessionSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    expires: 600,
+    expires: 86400,
     default: Date.now(),
   }
 });

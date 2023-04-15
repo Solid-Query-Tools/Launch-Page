@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import Team from './team';
 import Feedback from './Routes/Feedback';
+import { UserProvider } from './UserContext';
 
 const root = document.getElementById('root');
 
@@ -20,12 +21,14 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(() => 
 <QueryClientProvider client={queryClient}>
-<Router>
-  <Routes>
-    <Route path="/" component={App} />
-    <Route path="/team" component={Team} />
-    <Route path="/feedback" component={Feedback} />
-  </Routes>
-</Router>
+  <UserProvider >
+    <Router>
+      <Routes>
+        <Route path="/" component={App} />
+        <Route path="/team" component={Team} />
+        <Route path="/feedback" component={Feedback} />
+      </Routes>
+    </Router>
+  </UserProvider>
 </ QueryClientProvider>
 , root!);
