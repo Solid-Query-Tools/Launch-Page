@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js'
-import { createQuery } from '@tanstack/solid-query'
+import { createQuery, useQueryClient } from '@tanstack/solid-query'
 import Message from '../Components/Message'
 import Form from '../Components/Form'
 import Header from '../header'
@@ -32,9 +32,7 @@ export default function Feedback() {
       <div class='flex flex-col items-center'>
         <div class='bg-gray-800 w-1/4 h-10 flex items-center justify-around mt-10 min-w-fit p-3 rounded-xl'>
           <button class={`mx-2 border-b-2 ${active('feedback')}`} onClick={() => setView('feedback')}>View Feedback</button>
-          <button class={`mx-2 border-b-2 ${active('submit')}`} onClick={() => {
-            setView('submit')
-          }}>Submit Feedback</button>
+          <button class={`mx-2 border-b-2 ${active('submit')}`} onClick={() => {setView('submit')}}>Submit Feedback</button>
         </div>
         <section class='w-4/5 text-white mt-10 h-[40em]'>
           <Switch>
