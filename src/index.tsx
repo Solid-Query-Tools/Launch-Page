@@ -8,6 +8,7 @@ import App from './App';
 import Team from './team';
 import Feedback from './Routes/Feedback';
 import { UserProvider } from './UserContext';
+import PageNotFound from './Routes/PageNotFound';
 
 const root = document.getElementById('root');
 
@@ -27,6 +28,7 @@ render(() =>
         <Route path="/" component={App} />
         <Route path="/team" component={Team} />
         <Route path="/feedback" component={Feedback} />
+        <Route path='*' component={PageNotFound} />
       </Routes>
     </Router>
   </UserProvider>
