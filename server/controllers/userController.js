@@ -1,4 +1,4 @@
-const { Session } = require('../models');
+const { Session, User } = require('../models');
 
 const userController = {
 
@@ -21,7 +21,7 @@ const userController = {
           return next();
         }
         // otherwise save the user's github username to res.locals.userResponse
-        res.locals.userResponse = results.username;
+        res.locals.userResponse = {username: results.username}
         console.log("This is the username from the retrieval:", res.locals.userResponse)
         return next();
       })
@@ -34,6 +34,27 @@ const userController = {
         });
       })
   },
+
+  verifyAdmin: async (req, res, next) => {
+    console.log('here', res.locals.userResponse)
+    try {
+      let username = res.locals.userResponse.username
+      console.log(username)
+      const user = await User.findOne({username})
+      console.log('user', user)
+      if (user.admin) {
+        res.locals.userResponse.admin = true
+      }
+      return next()
+    }
+    catch(err) {
+      return next({
+        log: 'Error in verifyAdmin',
+        status: 500,
+        message: {err}
+      });
+    }
+  }
   
 }
 

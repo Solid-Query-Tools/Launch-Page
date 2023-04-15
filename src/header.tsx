@@ -12,9 +12,7 @@ const client_id = '0d4f2774e4002245e60a';
 
 export default function Header() {
 
-    const { username, setUsername } = useContext(UserContext);
-    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-    // const [cookie, setCookie] = createSignal('');
+    const { username, setUsername, isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
     console.log('username in header component: ', username());
 
@@ -27,7 +25,8 @@ export default function Header() {
             // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
             const data = response.data;
             console.log('/user response in header component: ', data); // log the response data
-            setUsername(data);
+            setUsername(data.username);
+            setIsAdmin(data.admin)
             setIsLoggedIn(true);
           })
           .catch(error => {

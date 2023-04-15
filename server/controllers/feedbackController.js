@@ -29,12 +29,10 @@ const feedbackController = {
     // if user's admin is true, retrieve all feedback
     try {  
       if (Object.keys(req.cookies).includes("session") === false)  {
-        console.log("User not logged in, sending APPROVED feedback!")
-        Feedback.find({ approved: true })
-              .then(results => {
-                res.locals.feedback = results;
-                return next();
-              })
+        console.log("User not logged in, sending APPROVEDDDD feedback!")
+        const feedback = await Feedback.find({ approved: true })
+        res.locals.feedback = feedback
+        return next()
       }
       await User.findOne({ _id: req.cookies.session })
         .then(results => {

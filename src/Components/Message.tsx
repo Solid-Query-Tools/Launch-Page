@@ -1,8 +1,10 @@
-import { Switch, Match, createSignal } from "solid-js";
+import { Switch, Match, createSignal, useContext } from "solid-js";
+import { UserContext } from '../UserContext';
 import axios from "axios";
 
 
 export default function Message(props) {
+  const { isAdmin } = useContext(UserContext);
 
   const [comment, setComment] = createSignal('')
 
@@ -59,11 +61,12 @@ export default function Message(props) {
         </div>
       </article>
       {/* Switch Match HERE */}
+      <Show when={isAdmin()}>
       <div id="commentInput" >
         <textarea class="ml-4 mb-2 w-2/3 text-black" placeholder="Admin Comment" onChange={handleTextAreaChange}></textarea>
         <button class="text-white bg-gray-800 rounded-xl p-1 ml-2" onClick={() => postComment()}>Submit</button>
       </div>
-
+      </Show>
     </div>
   )
 }
