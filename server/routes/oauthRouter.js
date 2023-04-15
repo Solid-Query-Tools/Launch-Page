@@ -7,11 +7,9 @@ dotenv.config();
 const client_id = process.env.CLIENT_ID
 
 oauthRouter.get('/', (req, res) => {
-  console.log("RECIEVING THIS FUCKING RESPONSE/REQUEST WHATEVER!");
   res.status(200).redirect(
     `https://github.com/login/oauth/authorize?client_id=${client_id}`
   );
-  // res.status(302);
 });
 
 oauthRouter.get(
@@ -22,6 +20,7 @@ oauthRouter.get(
   sessionController.createSession,
   (req, res) => {
     res.body = res.locals.user.username;
+    console.log("Sending username back to front!", res.body)
     return res.status(200).redirect('/');
   }
 )

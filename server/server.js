@@ -8,6 +8,7 @@ const models = require('./models');
 const cookieParser = require('cookie-parser');
 const feedbackRouter = require('./routes/feedbackRouter');
 const oauthRouter = require('./routes/oauthRouter');
+const userRouter = require('./routes/userRouter')
 
 
 async function launchServer() {
@@ -29,6 +30,9 @@ async function launchServer() {
 
   // route oauth requests
   app.use('/oauth', oauthRouter);
+
+  // route user requests
+  app.use('/user', userRouter);
 
   app.use('/', async (req, res, next) => {
     const url = req.originalUrl;
