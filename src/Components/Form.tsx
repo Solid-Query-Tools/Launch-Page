@@ -1,5 +1,5 @@
 //need to know if user is admin here 
-import { createEffect, createSignal } from "solid-js"
+import { createEffect, createSignal, Show } from "solid-js";
 
 export default function Form(props) {
 
@@ -31,7 +31,7 @@ export default function Form(props) {
       body: JSON.stringify({
         type: selectOption(),
         message: formData(),
-        createdBy: "Lloyd"
+        createdBy: "Lloyd" //replace with user
       }),
       headers: {
         'Content-Type': 'application/json'

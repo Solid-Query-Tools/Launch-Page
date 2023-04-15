@@ -33,7 +33,6 @@ const sessionSchema = new Schema({
   },
   username: {
     type: String,
-    ref: "Username",
     required: true
   },
   createdAt: {

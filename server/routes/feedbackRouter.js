@@ -12,7 +12,6 @@ feedbackRouter.put('/', updateFeedback, (req, res) => {
 })
 
 feedbackRouter.get('/', getFeedback, (req, res) => {
-  console.log("This is the feedback object:", res.locals.feedback)
   return res.status(200).send(res.locals.feedback);
 })
 

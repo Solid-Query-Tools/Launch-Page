@@ -12,51 +12,69 @@ const client_id = '0d4f2774e4002245e60a';
 
 export default function Header() {
 
-    const { username, setUsername } = useContext(UserContext);
-    const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-    // const [cookie, setCookie] = createSignal('');
+  const { username, setUsername } = useContext(UserContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  // const [cookie, setCookie] = createSignal('');
 
-    console.log('username in header component: ', username());
-
-
-    const getUser = () => {
-        axios.get('/user')
-          .then(response => {
-            // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
-            if (!response.data) return;
-            // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
-            const data = response.data;
-            console.log('/user response in header component: ', data); // log the response data
-            setUsername(data);
-            setIsLoggedIn(true);
-          })
-          .catch(error => {
-            console.log('/user error in header component: ', error);
-          });
-      }
-
-    onMount(() => {
-        getUser();
-    })
-
-    createEffect(() => {
-        console.log("Is the User Logged In:", isLoggedIn());
-    })
-
-    function oauth() {
-        window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
-        
-        //IF this doesn't work, then we will need to put the get User in a createEffect
-    }
+  console.log('username in header component: ', username());
 
 
+  const getUser = () => {
+    axios.get('/user')
+      .then(response => {
+        // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
+        if (!response.data) return;
+        // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
+        const data = response.data;
+        console.log('/user response in header component: ', data); // log the response data
+        setUsername(data);
+        setIsLoggedIn(true);
+      })
+      .catch(error => {
+        console.log('/user error in header component: ', error);
+      });
+  }
+
+  onMount(() => {
+    getUser();
+  })
+
+  createEffect(() => {
+    console.log("Is the User Logged In:", isLoggedIn());
+  })
+
+  function oauth() {
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
+
+    //IF this doesn't work, then we will need to put the get User in a createEffect
+  }
+
+  //delete "session" cookie
+  function deleteCookie() {
+    console.log('in delete cookie function');
+    document.cookie = "session" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  }
+
+  function logout() {
+    //remove session from DB
+    axios.delete('/session')
+      .then((result) => {
+        console.log('in logout function');
+        deleteCookie();
+        setIsLoggedIn(false)
+        console.log(isLoggedIn());
+      })
+      .catch(error => {
+        console.error('logout error: ', error);
+      });
+  }
 
 
-    const location = useLocation();
-    const active = (path: string) =>
-        path == location.pathname
-            ? "border-sky-600"
-            : "border-transparent hover:border-sky-600";
+  const location = useLocation();
+  const active = (path: string) =>
+    path == location.pathname
+      ? "border-sky-600"
+      : "border-transparent hover:border-sky-600";
 
   return (
     <>
@@ -83,15 +101,15 @@ export default function Header() {
             <img class="h-8 w-8 mr-4 invisible md:visible" src={MediumLogo} />
             <img class="h-8 w-8 invisible md:visible" src={GithubLogo} />
             <Switch>
-                <Match when={isLoggedIn() === false}>
-                    <div class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} >
-                        <button onClick={() => oauth()}>Github Login</button>
-                    </div>
-                </Match>
-                <Match when={isLoggedIn() === true} >
-                    <div class={`border-b-2 p-2 ml-10 invisible sm:visible sm:absolute sm:right-2 sm:top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("/")}`} >{username()}</div>
-                    <button class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} onClick={() => setIsLoggedIn(false)}>Logout</button>
-                </Match>
+              <Match when={isLoggedIn() === false}>
+                <div class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} >
+                  <button onClick={() => oauth()}>Github Login</button>
+                </div>
+              </Match>
+              <Match when={isLoggedIn() === true} >
+                <div class={`border-b-2 p-2 ml-10 invisible sm:visible sm:absolute sm:right-2 sm:top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("/")}`} >{username()}</div>
+                <button class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} onClick={() => logout()}>Logout</button>
+              </Match>
             </Switch>
           </div>
         </div>
