@@ -1,10 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { fileURLToPath } = require('url');
 const express = require('express');
 const { createServer } = require('vite');
-const { create } = require('domain');
-const models = require('./models');
 const cookieParser = require('cookie-parser');
 const feedbackRouter = require('./routes/feedbackRouter');
 const oauthRouter = require('./routes/oauthRouter');
@@ -58,15 +55,16 @@ async function launchServer() {
     }
   })
 
-app.use((err, req, res, next) => {
-  console.log(`Error: ${err}`);
-  const standardError = {
-    log: 'There is an unknown middleware error.',
-    status: 500,
-    message: {error: err}
-  };
-  return Object.assign(standardError, err);
-});
+  // global error handler
+  app.use((err, req, res, next) => {
+    console.log(`Error in global error handler: ${err}`);
+    const standardError = {
+      log: 'There is an unknown middleware error.',
+      status: 500,
+      message: {error: err}
+    };
+    return Object.assign(standardError, err);
+  });
 
   app.listen(8080, () => {
     console.log('The server is listening at port 8080.');
@@ -74,21 +72,3 @@ app.use((err, req, res, next) => {
 }
 
 launchServer();
-
-
-
-// // wild card handler
-// app.use('*', (req: Request, res: Response, next: NextFunction) => {
-//   return res.status(404).send('Page not found.');
-// });
-
-// // global error handling
-// app.use((err: Object, req: Request, res: Response, next: NextFunction) => {
-//   console.log(`Error: ${err}`);
-//   const standardError = {
-//     log: 'There is an unknown middleware error.',
-//     status: 500,
-//     message: {error: err}
-//   };
-//   return Object.assign(standardError, err);
-// });

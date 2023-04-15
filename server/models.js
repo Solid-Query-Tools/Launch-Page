@@ -2,13 +2,14 @@ const { connect, Schema, model } = require('mongoose');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
 const MONGO_URI = process.env.MONGO_URI;
 
+// connect to Mongo DB
 connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB.'))
   .catch((err) => console.log(err));
 
+// define schemas: 
 const feedbackSchema = new Schema({
   type: {type: String, required: true},
   message: {type: String, required: true},

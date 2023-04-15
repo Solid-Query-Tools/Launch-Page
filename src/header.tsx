@@ -20,13 +20,16 @@ export default function Header() {
     const getUser = () => {
         axios.get('/user')
           .then(response => {
+            // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
+            if (!response.data) return;
+            // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
             const data = response.data;
-            console.log(data); // log the response data
+            console.log('/user response in header component: ', data); // log the response data
             setUsername(data);
             setIsLoggedIn(true);
           })
           .catch(error => {
-            console.log(error);
+            console.log('/user error in header component: ', error);
           });
       }
 
@@ -79,8 +82,8 @@ export default function Header() {
             <img class="h-8 w-8 invisible sm:visible" src={GithubLogo} />
             <Switch>
                 <Match when={isLoggedIn() === false}>
-                    <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6`} >
-                        <button onClick={() => oauth()}>Admin Login</button>
+                    <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6 invisible sm:visible`} >
+                        <button onClick={() => oauth()}>Github Login</button>
                     </div>
                 </Match>
                 <Match when={isLoggedIn() === true}>
