@@ -4,13 +4,18 @@ const feedbackController = {
 
   postFeedback: async (req, res, next) => {
     try {
-      const { type, message, createdBy } = req.body;
-      Feedback.create({
-        'type': type,
-        'message': message,
-        'createdBy': createdBy,
-      });
-      return next();
+      if (res.locals.isVerified === true) {
+          const { type, message, createdBy } = req.body;
+        Feedback.create({
+          'type': type,
+          'message': message,
+          'createdBy': createdBy,
+        });
+        return next();
+      }
+      else {
+        return next();
+      }
     }
     catch (err) {
       return next({
@@ -26,8 +31,8 @@ const feedbackController = {
     // if user is logged in, use cookie to find the user
     // if user's admin is false, retrieve only approved feedback
     // if user's admin is true, retrieve all feedback
-    try {  
-      if (Object.keys(req.cookies).includes("session") === false)  {
+    try {
+      if (Object.keys(req.cookies).includes("session") === false) {
         const feedback = await Feedback.find({ approved: true });
         res.locals.feedback = feedback;
         return next();
@@ -60,10 +65,10 @@ const feedbackController = {
     };
   },
 
-  updateFeedback: async (req, res, next)  =>  {
+  updateFeedback: async (req, res, next) => {
     try {
       const { _id, adminResponse } = req.body;
-      Feedback.findOneAndUpdate({_id: _id}, {adminResponse: adminResponse, approved: true})
+      Feedback.findOneAndUpdate({ _id: _id }, { adminResponse: adminResponse, approved: true })
         .then(result => {
           res.locals.updatedObject = result;
           return next();

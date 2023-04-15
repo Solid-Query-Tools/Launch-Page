@@ -4,7 +4,7 @@ import { UserContext } from '../UserContext';
 
 export default function Form(props) {
 
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, username } = useContext(UserContext);
 
   const query = () => props.queryCall();
 
@@ -34,7 +34,7 @@ export default function Form(props) {
       body: JSON.stringify({
         type: selectOption(),
         message: formData(),
-        createdBy: "Lloyd" //replace with user
+        createdBy: username()
       }),
       headers: {
         'Content-Type': 'application/json'
