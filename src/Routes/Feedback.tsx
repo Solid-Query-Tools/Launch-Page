@@ -22,10 +22,6 @@ export default function Feedback() {
       return data.reverse();
     })
 
-
-  //need to filter before map as well
-  // const content = query.data.filter((q) => q.type == view()).map((q) => <Message  author={q.author} text={q.text} date={q.createdAt}/>)
-
   return (
     <>
       <Header />
@@ -33,13 +29,6 @@ export default function Feedback() {
         <div class='bg-gray-800 w-1/4 h-10 flex items-center justify-around mt-10 min-w-fit p-3 rounded-xl'>
           <button class={`mx-2 border-b-2 ${active('feedback')}`} onClick={() => setView('feedback')}>View Feedback</button>
           <button class={`mx-2 border-b-2 ${active('submit')}`} onClick={() => {
-            // fetch('/sendfeedback', {
-            //   method: 'POST',
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //   },
-            //   body: JSON.stringify({testimonial: "hi"}),
-            // });
             setView('submit')
           }}>Submit Feedback</button>
         </div>

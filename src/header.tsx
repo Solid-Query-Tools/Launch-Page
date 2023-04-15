@@ -70,25 +70,25 @@ export default function Header() {
           <li class={`border-b-2 ${active("/feedback")} mx-1.5 sm:mx-6`}>
             <a href="/feedback">Feedback</a>
           </li>
-          <li class={`border-2 rounded p-2 ml-10 visible text-[10px] absolute right-2 sm:invisible sm:mx-6`}>
+          {/* <li class={`border-2 rounded p-2 ml-10 visible text-[10px] absolute right-2 sm:invisible sm:mx-6`}>
             <button onClick={() => oauth()}>Github Login</button>
-          </li>
+          </li> */}
         </ul>
         <div class="flex flex-grow justify-end">
           <div class="sm:flex sm:flex-row sm:items-center">
-            <img class="h-10 w-10 mr-3 invisible sm:visible" src={NPMLogo} />
-            <img class="h-8 w-8 mr-3 invisible sm:visible" src={YarnLogo} />
-            <img class="h-8 w-8 mr-4 invisible sm:visible" src={MediumLogo} />
-            <img class="h-8 w-8 invisible sm:visible" src={GithubLogo} />
+            <img class="h-10 w-10 mr-3 invisible md:visible" src={NPMLogo} />
+            <img class="h-8 w-8 mr-3 invisible md:visible" src={YarnLogo} />
+            <img class="h-8 w-8 mr-4 invisible md:visible" src={MediumLogo} />
+            <img class="h-8 w-8 invisible md:visible" src={GithubLogo} />
             <Switch>
                 <Match when={isLoggedIn() === false}>
-                    <div class={`border-b-2 ${active("https://github.com/")} mx-1.5 sm:mx-6 invisible sm:visible`} >
+                    <div class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} >
                         <button onClick={() => oauth()}>Github Login</button>
                     </div>
                 </Match>
-                <Match when={isLoggedIn() === true}>
-                    <div class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`} >{username()}</div>
-                    <button class=" border-b-2 border-transparent hover:border-sky-600 mr-5" onClick={() => setIsLoggedIn(false)}>Logout</button>
+                <Match when={isLoggedIn() === true} >
+                    <div class={`border-b-2 p-2 ml-10 invisible sm:visible sm:absolute sm:right-2 sm:top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("/")}`} >{username()}</div>
+                    <button class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} onClick={() => setIsLoggedIn(false)}>Logout</button>
                 </Match>
             </Switch>
           </div>

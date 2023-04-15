@@ -54,7 +54,7 @@ const App: Component = () => {
         </video>
       </main>
       <div class="flex flex-col">
-        <p class="text-center font-thin md:relative md:mb-10">
+        <p class="text-center font-thin sm:relative sm:mb-10">
         A lightweight NPM package that allows you to debug SolidJS applications using Tanstack's Solid Query.
         </p>
         <div class="flex flex-col lg:flex-row justify-around mt-10 sm:h-[20em]">
