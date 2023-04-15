@@ -1,4 +1,30 @@
+import { Switch, Match, createSignal } from "solid-js";
+import axios from "axios";
+
+
 export default function Message(props) {
+
+  const [comment, setComment] = createSignal('')
+
+  const query = () => props.queryCall();
+
+  function handleTextAreaChange(event) {
+    setComment(event.target.value);
+  }
+
+  function postComment() {
+    axios.put('/fb', {
+      _id: props.id,
+      adminResponse: comment(),
+    })
+      .then((response) => {
+        query();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   function createString(user, date) {
     let str = `Submitted by ${user} on`
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -32,7 +58,12 @@ export default function Message(props) {
         </Show>
         </div>
       </article>
-      
+      {/* Switch Match HERE */}
+      <div id="commentInput" >
+        <textarea class="ml-4 mb-2 w-2/3 text-black" placeholder="Admin Comment" onChange={handleTextAreaChange}></textarea>
+        <button class="text-white bg-gray-800 rounded-xl p-1 ml-2" onClick={() => postComment()}>Submit</button>
+      </div>
+
     </div>
   )
 }

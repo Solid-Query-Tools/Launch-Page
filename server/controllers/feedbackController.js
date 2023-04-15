@@ -65,6 +65,27 @@ const feedbackController = {
       });
     };
   },
+
+  updateFeedback: async (req, res, next)  =>  {
+    try {
+      const { _id, adminResponse } = req.body;
+      console.log("Updating feedback in DB and approving! ID and Admin Response:", _id, adminResponse)
+      
+      Feedback.findOneAndUpdate({_id: _id}, {adminResponse: adminResponse, approved: true})
+        .then(result => {
+          res.locals.updatedObject = result;
+          return next();
+        })
+    }
+    catch (err) {
+      next({
+        log: "Error in updateFeedback",
+        status: 500,
+        message: { err },
+      })
+    }
+  }
+
 }
 
 module.exports = feedbackController;
