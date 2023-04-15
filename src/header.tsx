@@ -12,28 +12,29 @@ const client_id = '0d4f2774e4002245e60a';
 
 export default function Header() {
 
-  const { username, setUsername } = useContext(UserContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  // const [cookie, setCookie] = createSignal('');
+  const { username, setUsername, isAdmin, setIsAdmin, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
 
   console.log('username in header component: ', username());
 
 
-  const getUser = () => {
-    axios.get('/user')
-      .then(response => {
-        // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
-        if (!response.data) return;
-        // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
-        const data = response.data;
-        console.log('/user response in header component: ', data); // log the response data
-        setUsername(data);
-        setIsLoggedIn(true);
-      })
-      .catch(error => {
-        console.log('/user error in header component: ', error);
-      });
-  }
+
+    const getUser = () => {
+        axios.get('/user')
+          .then(response => {
+            // if the user hasn't logged in or their session has expired, return without setting the isLoggedIn signal to true
+            if (!response.data) return;
+            // otherwise set the username signal to the user's github username and the isLoggedIn signal to true
+            const data = response.data;
+            console.log('/user response in header component: ', data); // log the response data
+            setUsername(data.username);
+            setIsAdmin(data.admin)
+            setIsLoggedIn(true);
+          })
+          .catch(error => {
+            console.log('/user error in header component: ', error);
+          });
+      }
 
   onMount(() => {
     getUser();

@@ -1,7 +1,10 @@
 //need to know if user is admin here 
-import { createEffect, createSignal, Show } from "solid-js";
+import { createEffect, createSignal, useContext, Show } from "solid-js"
+import { UserContext } from '../UserContext';
 
 export default function Form(props) {
+
+  const { isLoggedIn } = useContext(UserContext);
 
   const query = () => props.queryCall();
 
@@ -48,6 +51,10 @@ export default function Form(props) {
   return (
     <div class="h-content w-4/5 text-black flex justify-center align-center">
       <form class="flex flex-col justify-center items-center flex flex-col justify-center">
+        <Show when={!isLoggedIn()}>
+        <p class="text-red-500">You must be logged in to submit feedback!</p>
+        </Show>
+        <Show when={isLoggedIn()}>
       <Show when={submitError()}>
         <p class="text-red-500">Please include both a feedback type and a message to submit your feedback!</p>
       </Show>
@@ -68,6 +75,7 @@ export default function Form(props) {
           <textarea id="message" onChange={handleTextAreaChange} maxlength="500" placeholder="Write your message here..." rows="12" cols="50" class="resize-none text-sm p-3 rounded-xl text-white bg-gray-800 mt-2 height-auto" />
         </div>
         <button class="bg-blue-500 text-white px-3 py-1 rounded-xl mt-10 text-sm ease-linear duration-100 hover:text-base" onClick={(e) => submitFeedback(e)}>Submit</button>
+        </Show>
         </Show>
       </form>
     </div>
