@@ -106,16 +106,6 @@ const App: Component = () => {
             </Show>
           </div>
         </div>
-        <p class="my-4 ml-5 relative bottom-0 sm:fixed lg:relative">
-          <span>Home</span>
-          {" - "}
-          <A href="/about" class="text-sky-600 hover:underline">
-            About Page
-          </A>{" - "}
-          <A href="/team" class="text-sky-600 hover:underline">
-            Team Page
-          </A>
-        </p>
       </div>
     </>
   );
