@@ -35,17 +35,17 @@ export default function Feedback() {
         <section class='w-4/5 text-white mt-10 h-[40em]'>
           <Switch>
             <Match when={view() === 'feedback'}>
-              <div class="flex flex-col items-center overflow-y-scroll">
+              <div class="flex flex-col items-center">
                 <For each={query.data}>
                   {feedback => {
-                    return <Message createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} queryCall={query}/>
+                    return <Message id={feedback._id} createdBy={feedback.createdBy} createdAt={feedback.createdAt} type={feedback.type} message={feedback.message} adminResponse={feedback.adminResponse} queryCall={query}/>
                   }}
                 </ For>
               </div>
-            </Match>
+            </Match >
             <Match when={view() === 'submit'}>
               <div class="flex flex-col items-center">
-                <Form />
+                <Form queryCall={query}/>
               </div>
             </Match>
           </ Switch>
