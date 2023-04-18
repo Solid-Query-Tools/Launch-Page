@@ -26,9 +26,9 @@ const App: Component = () => {
   }
 
   const styling = switcher =>
-  view() == switcher
-    ? "border-sky-600"
-    : "border-transparent hover:border-sky-600";
+    view() == switcher
+      ? "border-sky-600"
+      : "border-transparent hover:border-sky-600";
 
   return (
     <>
@@ -36,7 +36,7 @@ const App: Component = () => {
       <main class="relative flex sm:mb-12 overflow-hidden h-32 sm:h-64">
         <div class="relative flex flex-col justify-center items-center z-30 p-5 text-3xl sm:text-6xl justify-center text-sky-200 text-center bg-opacity-50 rounded-xl w-screen">
           <img class="h-7 w-7 sm:h-14 sm:w-14" src={SolidLogo} />
-          Solid Query Devtools
+          Solid Query Devkit
         </div>
         <video
           autoplay
@@ -52,7 +52,7 @@ const App: Component = () => {
       </main>
       <div class="flex flex-col">
         <p class="text-center font-thin sm:relative sm:mb-10">
-        A lightweight NPM package that allows you to debug SolidJS applications using Tanstack's Solid Query.
+          A lightweight NPM package that allows you to debug SolidJS applications using Tanstack's Solid Query.
         </p>
         <div class="flex flex-col lg:flex-row justify-around mt-10 sm:h-[20em]">
           <div class="bg-gray-800 lg:w-1/3 rounded-xl flex flex-col m-2">
@@ -73,28 +73,28 @@ const App: Component = () => {
             </div>
             <Show when={view() == 'install'}>
               <div class="flex flex-col items-center">
-                <div onMouseOver={() => setCopyNPM(true)}  onMouseLeave={() => setCopyNPM(false)}class="rounded-lg px-2 flex items-center justify-between mt-10 bg-gray-700 w-3/5 p-1 font-['Roboto-mono']">
-                  <p class="font-mono text-sm px-2">npm install solid-query-devtools</p>
+                <div onMouseOver={() => setCopyNPM(true)} onMouseLeave={() => setCopyNPM(false)} class="rounded-lg px-2 flex items-center justify-between mt-10 bg-gray-700 w-3/5 p-1 font-['Roboto-mono']">
+                  <p class="font-mono text-sm px-2">npm install solid-query-devkit</p>
                   <Show when={copyNPM() || copiedNPM()}>
                     <Switch>
                       <Match when={!copiedNPM()}>
-                        <IoCopy class='cursor-pointer' size={18} color={"gray"} title="CopyOutlined" onClick={() => copyText('npm install solid-query-devtools', setCopiedNPM)}/>
+                        <IoCopy class='cursor-pointer' size={18} color={"gray"} title="CopyOutlined" onClick={() => copyText('npm install solid-query-devtools', setCopiedNPM)} />
                       </Match>
                       <Match when={copiedNPM()}>
-                        <FaRegularCircleCheck size={18} color={"green"} title="CopyOutlined"/>
+                        <FaRegularCircleCheck size={18} color={"green"} title="CopyOutlined" />
                       </Match>
                     </Switch>
                   </Show>
                 </div>
-                <div onMouseOver={() => setCopyYarn(true)}  onMouseLeave={() => setCopyYarn(false)} class="rounded-lg px-2 mb-2 flex items-center justify-between mt-3 bg-gray-700 w-3/5 p-1 font-['Roboto-mono']">
-                  <p class="font-mono text-sm px-2">yarn add @solid-query-devtools</p>
+                <div onMouseOver={() => setCopyYarn(true)} onMouseLeave={() => setCopyYarn(false)} class="rounded-lg px-2 mb-2 flex items-center justify-between mt-3 bg-gray-700 w-3/5 p-1 font-['Roboto-mono']">
+                  <p class="font-mono text-sm px-2">yarn add @solid-query-devkit</p>
                   <Show when={copyYarn() || copiedYarn()}>
                     <Switch>
                       <Match when={!copiedYarn()}>
-                        <IoCopy class='cursor-pointer' size={18} color={"gray"} title="CopyOutlined" onClick={() => copyText('yarn add @solid-query-devtools', setCopiedYarn)}/>
+                        <IoCopy class='cursor-pointer' size={18} color={"gray"} title="CopyOutlined" onClick={() => copyText('yarn add @solid-query-devtools', setCopiedYarn)} />
                       </Match>
                       <Match when={copiedYarn()}>
-                        <FaRegularCircleCheck size={18} color={"green"} title="CopyOutlined"/>
+                        <FaRegularCircleCheck size={18} color={"green"} title="CopyOutlined" />
                       </Match>
                     </Switch>
                   </Show>
