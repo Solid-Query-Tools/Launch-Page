@@ -78,7 +78,7 @@ const App: Component = () => {
                     </Switch>
                   </Show>
                 </div>
-                <p class="hover:border-b-2 hover:border-sky-600 mt-10 text-sky-700 font-bold"><a href="https://github.com/oslabs-beta/SQuiD">How to Use</a></p>
+                <p class="hover:border-b-2 hover:border-sky-600 mt-10 text-sky-700 font-bold"><a href="https://github.com/oslabs-beta/solid-query-devkit">How to Use</a></p>
               </div>
           </div>
         </div>
