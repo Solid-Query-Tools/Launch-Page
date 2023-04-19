@@ -1,6 +1,6 @@
 import "./team.css";
 import Truett from "./assets/truett.png"
-import Dakota from "./assets/dakotaNew.jpg"
+import Dakota from "./assets/dakotaNew.jpeg"
 import Peter from "./assets/peterNew.jpeg"
 import Lloyd from "./assets/lloyd.png"
 import Linked from "./assets/linked.png"

@@ -1,8 +1,8 @@
 FROM node:18.15
-WORKDIR /usr/src/
-COPY package*.json ./
+WORKDIR /usr/src/app
+COPY package*.json /usr/src/app/
 RUN npm install
-COPY . .
+COPY . /usr/src/app
 RUN npm run build
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "node", "server/server.js" ]
