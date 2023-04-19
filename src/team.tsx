@@ -14,7 +14,7 @@ export default function Team() {
       <Header />
       <main class="main flex flex-col justify-center items-center">
         <div class="header">
-          <p>MEET THE TEAM!</p>
+          <p>MEET THE TEAM</p>
         </div>
         <div class="container flex flex-col lg:flex-row lg:items-center">
           <div class="card lg:w-1/4">
