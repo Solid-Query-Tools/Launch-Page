@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run serve",
+    "start": "node server/server.js",
     "dev": "node server/server.js",
     "build": "vite build",
     "serve": "vite preview"
