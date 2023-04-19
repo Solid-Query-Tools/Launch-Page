@@ -1,6 +1,5 @@
 import SquidLogo from './assets/SquidLogo.png';
-import YarnLogo from './assets/YarnLogo.png';
-import MediumLogo from './assets/MediumLogo.png';
+// import MediumLogo from './assets/MediumLogo.png';
 import GithubLogo from './assets/GithubLogo.png'
 import NPMLogo from './assets/NPMLogo.png'
 import { useLocation } from "@solidjs/router"
@@ -79,10 +78,9 @@ export default function Header() {
         </ul>
         <div class="flex flex-grow justify-end">
           <div class="sm:flex sm:flex-row sm:items-center">
-            <img class="h-10 w-10 mr-3 invisible md:visible" src={NPMLogo} />
-            <img class="h-8 w-8 mr-3 invisible md:visible" src={YarnLogo} />
-            <img class="h-8 w-8 mr-4 invisible md:visible" src={MediumLogo} />
-            <img class="h-8 w-8 invisible md:visible" src={GithubLogo} />
+          <a href="https://www.npmjs.com/package/solid-query-devkit"><img class="h-10 w-10 mr-3 invisible md:visible" src={NPMLogo} /></a>
+            {/* <img class="h-8 w-8 mr-4 invisible md:visible" src={MediumLogo} /> */}
+          <a href="https://github.com/oslabs-beta/SQuiD"><img class="h-8 w-8 invisible md:visible" src={GithubLogo} /></a>
             <Switch>
               <Match when={isLoggedIn() === false}>
                 <div class={`border-b-2 p-2 ml-10 absolute right-2 top-5 sm:mb-10 sm:relative sm:ml-5 sm:mx-6 sm:${active("https://github.com/")}`} >
