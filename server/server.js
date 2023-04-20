@@ -14,6 +14,9 @@ const sessionRouter = require('./routes/sessionRouter');
   app.use(express.json());
   app.use(cookieParser());
   app.use(express.static(path.resolve(__dirname, '../dist')));
+  app.use('/team', express.static(path.resolve(__dirname, '../dist')));
+  app.use('/feedback', express.static(path.resolve(__dirname, '../dist')));
+
 
   // route feedback requests
   app.use('/fb', feedbackRouter);
@@ -26,6 +29,8 @@ const sessionRouter = require('./routes/sessionRouter');
 
   // route session requests
   app.use('/session', sessionRouter);
+
+  app.use('*', express.static(path.resolve(__dirname, '../dist')));
 
   // app.use('/', async (req, res, next) => {
   //   const url = req.originalUrl;
