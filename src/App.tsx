@@ -3,7 +3,6 @@ import { IoCopy } from 'solid-icons/io'
 import { FaRegularCircleCheck } from 'solid-icons/fa'
 import BackgroundBubbles from "./assets/BackgroundBubbles.mp4"
 import SolidLogo from "./assets/SolidLogo.png"
-import HowTo from "./assets/how-to-use.jpg"
 import Header from './header';
 
 const App: Component = () => {
@@ -65,7 +64,7 @@ const App: Component = () => {
               
             </div>
               <div class="flex flex-col items-center justify-center mb-4">
-                <div onMouseOver={() => setCopyNPM(true)} onMouseLeave={() => setCopyNPM(false)} class="rounded-lg px-2 flex items-center justify-between mt-10 bg-gray-700 w-3/5 p-1 font-['Roboto-mono']">
+                <div onMouseOver={() => setCopyNPM(true)} onMouseLeave={() => setCopyNPM(false)} class="rounded-lg px-2 flex items-center justify-between mt-10 bg-gray-700 w-7/10 p-1 font-['Roboto-mono']">
                   <p class="font-mono text-sm px-2">npm install solid-query-devkit</p>
                   <Show when={copyNPM() || copiedNPM()}>
                     <Switch>

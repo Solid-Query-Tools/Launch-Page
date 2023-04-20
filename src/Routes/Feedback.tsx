@@ -4,7 +4,6 @@ import Message from '../Components/Message'
 import Form from '../Components/Form'
 import Header from '../header'
 import { For, Switch, Match } from 'solid-js'
-import SolidQueryDevkit from 'solid-query-devkit'
 
 export default function Feedback() {
   //use signal to determine whether to show feature request or bugs
@@ -50,7 +49,6 @@ export default function Feedback() {
           </ Switch>
         </section>
       </div>
-      <SolidQueryDevkit />
     </>
   )
 }
