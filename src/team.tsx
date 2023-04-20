@@ -1,7 +1,7 @@
 import "./team.css";
-import Truett from "./assets/truett.png"
-import Dakota from "./assets/dakotaNew.jpeg"
-import Peter from "./assets/peterNew.jpeg"
+import Truett from "./assets/TruettHeadshot.jpeg"
+import Dakota from "./assets/DakotaHeadshot.png"
+import Peter from "./assets/PeterHeadshot.jpeg"
 import Lloyd from "./assets/lloyd.png"
 import Linked from "./assets/linked.png"
 import Github from "./assets/GithubWhite.png"
