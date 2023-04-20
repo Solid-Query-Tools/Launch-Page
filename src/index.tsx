@@ -31,4 +31,4 @@ render(() =>
     </Router>
   </UserProvider>
 </ QueryClientProvider>
-, root!);
+, root);
